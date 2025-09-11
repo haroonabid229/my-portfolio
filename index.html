@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,16 +8,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
+            --primary-color: #1a1a2e;
+            --secondary-color: #0f3460;
+            --accent-color: #e94560;
+            --light-color: #f0f5f9;
+            --text-dark: #1e1e2e;
+            --text-light: #f0f5f9;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: #f8f9fa;
             scroll-behavior: smooth;
         }
         
@@ -26,42 +27,74 @@
             background-color: var(--primary-color);
             padding: 15px 0;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .navbar-brand, .nav-link {
-            color: white !important;
+            color: var(--text-light) !important;
+            font-weight: 600;
+        }
+        
+        .nav-link {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
         }
         
         .navbar-toggler {
             border: none;
+            color: var(--text-light);
         }
         
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.8)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
             height: 100vh;
-            color: white;
+            color: var(--text-light);
             display: flex;
             align-items: center;
             text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         .profile-img {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid white;
+            border: 5px solid var(--accent-color);
             margin: 0 auto 20px;
             display: block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .section-padding {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .section-title {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             position: relative;
+            font-weight: 700;
+            color: var(--primary-color);
         }
         
         .section-title::after {
@@ -71,17 +104,23 @@
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
-            height: 3px;
-            background-color: var(--secondary-color);
+            height: 4px;
+            background-color: var(--accent-color);
         }
         
         .skill-item {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .progress {
-            height: 10px;
-            border-radius: 5px;
+            height: 12px;
+            border-radius: 10px;
+            background-color: #e0e0e0;
+        }
+        
+        .progress-bar {
+            border-radius: 10px;
+            background-color: var(--secondary-color);
         }
         
         .timeline {
@@ -96,25 +135,29 @@
             left: 7px;
             top: 0;
             height: 100%;
-            width: 2px;
+            width: 3px;
             background: var(--secondary-color);
         }
         
         .timeline-item {
             position: relative;
             margin-bottom: 2.5rem;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         .timeline-item::before {
             content: '';
             position: absolute;
             left: -3.2rem;
-            top: 0.5rem;
-            width: 16px;
-            height: 16px;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: var(--secondary-color);
-            border: 3px solid white;
+            border: 4px solid white;
             box-shadow: 0 0 0 3px var(--secondary-color);
         }
         
@@ -122,72 +165,91 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-bottom: 30px;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: none;
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
         
         .project-img {
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
         
         .project-card:hover .project-img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .contact-form .form-control {
-            border-radius: 0;
-            border: none;
-            border-bottom: 2px solid #ddd;
-            padding-left: 0;
-            padding-right: 0;
-            margin-bottom: 30px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
         }
         
         .contact-form .form-control:focus {
             box-shadow: none;
-            border-bottom-color: var(--secondary-color);
+            border-color: var(--secondary-color);
         }
         
         .social-icons a {
             display: inline-block;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: var(--primary-color);
             color: white;
             border-radius: 50%;
             text-align: center;
-            line-height: 40px;
-            margin-right: 10px;
+            line-height: 45px;
+            margin-right: 15px;
             transition: all 0.3s ease;
         }
         
         .social-icons a:hover {
-            background: var(--secondary-color);
+            background: var(--accent-color);
             transform: translateY(-5px);
         }
         
         .subject-tabs {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .subject-tabs .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 600;
+            padding: 15px 25px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .subject-tabs .nav-link.active {
+            background-color: var(--secondary-color);
+            color: white !important;
         }
         
         .report-card {
-            margin-bottom: 20px;
-            border-radius: 10px;
+            margin-bottom: 25px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: none;
+        }
+        
+        .report-card:hover {
+            transform: translateY(-5px);
         }
         
         footer {
             background-color: var(--primary-color);
             color: white;
-            padding: 40px 0 20px;
+            padding: 60px 0 30px;
         }
         
         .back-to-top {
@@ -196,7 +258,7 @@
             right: 30px;
             width: 50px;
             height: 50px;
-            background: var(--secondary-color);
+            background: var(--accent-color);
             color: white;
             border-radius: 50%;
             text-align: center;
@@ -205,21 +267,54 @@
             opacity: 0;
             transition: all 0.3s ease;
             z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .back-to-top.show {
             opacity: 1;
         }
         
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline-light {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
         @media (max-width: 768px) {
             .hero {
                 height: auto;
-                padding: 100px 0;
+                padding: 120px 0;
             }
             
             .profile-img {
-                width: 150px;
-                height: 150px;
+                width: 180px;
+                height: 180px;
+            }
+            
+            .section-padding {
+                padding: 70px 0;
             }
         }
     </style>
@@ -250,7 +345,7 @@
                         <a class="nav-link" href="#experience">Expérience</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#compte-rendu">Compte rendu</a>
+                        <a class="nav-link" href="#compte-rendu">Comptes rendus</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
@@ -262,14 +357,14 @@
 
     <!-- Hero Section -->
     <section id="accueil" class="hero">
-        <div class="container">
+        <div class="container hero-content">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Abid HAROON" class="profile-img">
-                    <h1>Abid HAROON</h1>
-                    <p class="lead">Étudiant BTS SIO</p>
+                    <h1 class="display-4 fw-bold mb-3">Abid HAROON</h1>
+                    <p class="lead fs-4">Étudiant BTS SIO</p>
                     <p class="mb-4">Motivé, adaptable et disponible immédiatement pour de nouvelles missions</p>
-                    <a href="#contact" class="btn btn-primary btn-lg me-2">Me contacter</a>
+                    <a href="#contact" class="btn btn-primary btn-lg me-3">Me contacter</a>
                     <a href="#" class="btn btn-outline-light btn-lg" id="downloadCV">Télécharger mon CV</a>
                 </div>
             </div>
@@ -282,22 +377,22 @@
             <h2 class="text-center section-title">À propos de moi</h2>
             <div class="row">
                 <div class="col-lg-6">
-                    <h3>Qui suis-je?</h3>
+                    <h3 class="mb-4">Qui suis-je?</h3>
                     <p>Je suis étudiant en BTS SIO (Services Informatiques aux Organisations) motivé et passionné par l'informatique. Ayant effectué plusieurs missions en intérim et travaillé pendant les vacances d'été, je suis adaptable et disponible immédiatement pour de nouvelles missions. Je m'intègre facilement et je m'investis pleinement dans les tâches qui me sont confiées.</p>
                     <p>En dehors de mes études, je pratique la boxe anglaise et la musculation, ce qui me permet de développer discipline, rigueur et dépassement de soi. J'apprécie également la musique douce pour la concentration et le bien-être.</p>
                 </div>
                 <div class="col-lg-6">
-                    <h3>Informations personnelles</h3>
+                    <h3 class="mb-4">Informations personnelles</h3>
                     <div class="row">
-                        <div class="col-md-6">
-                            <p><strong>Nom:</strong> Abid HAROON</p>
-                            <p><strong>Téléphone:</strong> 06 12 34 56 78</p>
-                            <p><strong>Email:</strong> abid.haroon@email.com</p>
+                        <div class="col-md-6 mb-3">
+                            <p><strong><i class="bi bi-person-fill me-2"></i>Nom:</strong> Abid HAROON</p>
+                            <p><strong><i class="bi bi-telephone-fill me-2"></i>Téléphone:</strong> 06 41 51 21 64</p>
+                            <p><strong><i class="bi bi-envelope-fill me-2"></i>Email:</strong> kabid8788@gmail.com</p>
                         </div>
-                        <div class="col-md-6">
-                            <p><strong>Adresse:</strong> 123 Avenue de la République, 87000 Limoges</p>
-                            <p><strong>Disponibilité:</strong> Immédiate</p>
-                            <p><strong>Statut:</strong> Étudiant BTS SIO</p>
+                        <div class="col-md-6 mb-3">
+                            <p><strong><i class="bi bi-geo-alt-fill me-2"></i>Adresse:</strong> 12 rue docteur roubaud, 05000 GAP</p>
+                            <p><strong><i class="bi bi-clock-fill me-2"></i>Disponibilité:</strong> Immédiate</p>
+                            <p><strong><i class="bi bi-bookmark-fill me-2"></i>Statut:</strong> Étudiant BTS SIO</p>
                         </div>
                     </div>
                 </div>
@@ -566,874 +661,183 @@
         <div class="container">
             <h2 class="text-center section-title">Comptes rendus</h2>
             
-            <ul class="nav nav-tabs subject-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-pills subject-tabs justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="bloc1-tab" data-bs-toggle="tab" data-bs-target="#bloc1" type="button" role="tab" aria-controls="bloc1" aria-selected="true">Bloc 1</button>
+                    <button class="nav-link active" id="atelier-tab" data-bs-toggle="pill" data-bs-target="#atelier" type="button" role="tab" aria-controls="atelier" aria-selected="true">Atelier pro</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="cybersecurite-tab" data-bs-toggle="tab" data-bs-target="#cybersecurite" type="button" role="tab" aria-controls="cybersecurite" aria-selected="false">Cybersécurité</button>
+                    <button class="nav-link" id="cybersecurite-tab" data-bs-toggle="pill" data-bs-target="#cybersecurite" type="button" role="tab" aria-controls="cybersecurite" aria-selected="false">Cybersécurité</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="reseau-tab" data-bs-toggle="tab" data-bs-target="#reseau" type="button" role="tab" aria-controls="reseau" aria-selected="false">Réseau</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="atelier-tab" data-bs-toggle="tab" data-bs-target="#atelier" type="button" role="tab" aria-controls="atelier" aria-selected="false">Atelier</button>
+                    <button class="nav-link" id="reseau-tab" data-bs-toggle="pill" data-bs-target="#reseau" type="button" role="tab" aria-controls="reseau" aria-selected="false">Réseau</button>
                 </li>
             </ul>
             
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="bloc1" role="tabpanel" aria-labelledby="bloc1-tab">
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Compte rendu Bloc 1 - Semaine 1</h5>
-                            <p class="card-text">Introduction aux concepts fondamentaux du développement web et aux bonnes pratiques.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Compte rendu Bloc 1 - Semaine 2</h5>
-                            <p class="card-text">Approfondissement des langages HTML5 et CSS3 avec mise en pratique sur un projet concret.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tab-pane fade" id="cybersecurite" role="tabpanel" aria-labelledby="cybersecurite-tab">
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Cybersécurité - Mme Beauvallet</h5>
-                            <p class="card-text">Introduction aux principes de base de la sécurité informatique et des bonnes pratiques.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Sécurité des réseaux</h5>
-                            <p class="card-text">Étude des vulnérabilités réseau et des méthodes de protection.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tab-pane fade" id="reseau" role="tabpanel" aria-labelledby="reseau-tab">
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Réseau - M. Sotoca</h5>
-                            <p class="card-text">Configuration des routeurs et commutateurs dans un environnement réseau simulé.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Protocoles de communication</h5>
-                            <p class="card-text">Analyse des protocoles TCP/IP et mise en pratique avec Wireshark.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tab-pane fade" id="atelier" role="tabpanel" aria-labelledby="atelier-tab">
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Atelier - M. Sotoca</h5>
-                            <p class="card-text">Atelier pratique sur la configuration d'un serveur Linux et services associés.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Dépannage réseau</h5>
-                            <p class="card-text">Méthodologie de diagnostic et résolution des pannes réseau courantes.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="text-center section-title">Contactez-moi</h2>
-            <div class="row">
-                <div class="col-lg-6">
-                    <form class="contact-form">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Votre nom" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Votre email" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Sujet" required>
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Votre message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Envoyer le message</button>
-                    </form>
-                </div>
-                <div class="col-lg-6 mt-5 mt-lg-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Coordonnées</h5>
-                            <p class="card-text"><i class="bi bi-geo-alt-fill me-2"></i> 123 Avenue de la République, 87000 Limoges</p>
-                            <p class="card-text"><i class="bi bi-telephone-fill me-2"></i> 06 12 34 56 78</p>
-                            <p class="card-text"><i class="bi bi-envelope-fill me-2"></i> abid.haroon@email.com</p>
-                            <div class="social-icons mt-4">
-                                <a href="#"><i class="bi bi-linkedin"></i></a>
-                                <a href="#"><i class="bi bi-github"></i></a>
-                                <a href="#"><i class="bi bi-twitter"></i></a>
-                                <a href="#"><i class="bi bi-facebook"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>Abid HAROON</h5>
-                    <p>Étudiant BTS SIO motivé et passionné par l'informatique</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="social-icons">
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                        <a href="#"><i class="bi bi-github"></i></a>
-                        <a href="#"><i class="bi bi-twitter"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr class="mt-4 mb-4" style="background-color: rgba(255,255,255,0.2);">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2023 Abid HAROON. Tous droits réservés.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="#" class="text-light me-3">Mentions légales</a>
-                    <a href="#" class="text-light">Politique de confidentialité</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="bi bi-arrow-up"></i>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Back to top button
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                document.querySelector('.navbar').style.padding = '10px 0';
-                document.querySelector('.navbar').style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-            } else {
-                document.querySelector('.navbar').style.padding = '15px 0';
-                document.querySelector('.navbar').style.boxShadow = 'none';
-            }
-        });
-        
-        // CV Download
-        document.getElementById('downloadCV').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Créer un lien de téléchargement
-            const link = document.createElement('a');
-            link.href = 'CV_Abid_HAROON.pdf'; // Remplacez par le chemin réel de votre CV
-            link.download = 'CV_Abid_HAROON.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-        
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Votre message a été envoyé avec succès ! Je vous répondrai très rapidement.');
-            this.reset();
-        });
-    </script>
-</body>
-=======
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abid HAROON - Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-            scroll-behavior: smooth;
-        }
-        
-        .navbar {
-            background-color: var(--primary-color);
-            padding: 15px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .navbar-brand, .nav-link {
-            color: white !important;
-        }
-        
-        .navbar-toggler {
-            border: none;
-        }
-        
-        .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
-            height: 100vh;
-            color: white;
-            display: flex;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-            margin: 0 auto 20px;
-            display: block;
-        }
-        
-        .section-padding {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            margin-bottom: 50px;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--secondary-color);
-        }
-        
-        .skill-item {
-            margin-bottom: 20px;
-        }
-        
-        .progress {
-            height: 10px;
-            border-radius: 5px;
-        }
-        
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-            margin-top: 2rem;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: var(--secondary-color);
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2.5rem;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3.2rem;
-            top: 0.5rem;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--secondary-color);
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px var(--secondary-color);
-        }
-        
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 30px;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .project-img {
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .project-card:hover .project-img {
-            transform: scale(1.1);
-        }
-        
-        .contact-form .form-control {
-            border-radius: 0;
-            border: none;
-            border-bottom: 2px solid #ddd;
-            padding-left: 0;
-            padding-right: 0;
-            margin-bottom: 30px;
-        }
-        
-        .contact-form .form-control:focus {
-            box-shadow: none;
-            border-bottom-color: var(--secondary-color);
-        }
-        
-        .social-icons a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: var(--secondary-color);
-            transform: translateY(-5px);
-        }
-        
-        .subject-tabs {
-            margin-bottom: 30px;
-        }
-        
-        .report-card {
-            margin-bottom: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 40px 0 20px;
-        }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--secondary-color);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 50px;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-        }
-        
-        @media (max-width: 768px) {
-            .hero {
-                height: auto;
-                padding: 100px 0;
-            }
-            
-            .profile-img {
-                width: 150px;
-                height: 150px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Abid HAROON</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#accueil">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#apropos">À propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#competences">Compétences</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projets">Projets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience">Expérience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#compte-rendu">Compte rendu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="accueil" class="hero">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Abid HAROON" class="profile-img">
-                    <h1>Abid HAROON</h1>
-                    <p class="lead">Étudiant BTS SIO</p>
-                    <p class="mb-4">Motivé, adaptable et disponible immédiatement pour de nouvelles missions</p>
-                    <a href="#contact" class="btn btn-primary btn-lg me-2">Me contacter</a>
-                    <a href="#" class="btn btn-outline-light btn-lg" id="downloadCV">Télécharger mon CV</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- À propos Section -->
-    <section id="apropos" class="section-padding">
-        <div class="container">
-            <h2 class="text-center section-title">À propos de moi</h2>
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3>Qui suis-je?</h3>
-                    <p>Je suis étudiant en BTS SIO (Services Informatiques aux Organisations) motivé et passionné par l'informatique. Ayant effectué plusieurs missions en intérim et travaillé pendant les vacances d'été, je suis adaptable et disponible immédiatement pour de nouvelles missions. Je m'intègre facilement et je m'investis pleinement dans les tâches qui me sont confiées.</p>
-                    <p>En dehors de mes études, je pratique la boxe anglaise et la musculation, ce qui me permet de développer discipline, rigueur et dépassement de soi. J'apprécie également la musique douce pour la concentration et le bien-être.</p>
-                </div>
-                <div class="col-lg-6">
-                    <h3>Informations personnelles</h3>
+            <div class="tab-content mt-5" id="myTabContent">
+                <div class="tab-pane fade show active" id="atelier" role="tabpanel" aria-labelledby="atelier-tab">
                     <div class="row">
-                        <div class="col-md-6">
-                            <p><strong>Nom:</strong> Abid HAROON</p>
-                            <p><strong>Téléphone:</strong> 06 12 34 56 78</p>
-                            <p><strong>Email:</strong> abid.haroon@email.com</p>
+                        <div class="col-md-4 mb-4">
+                            <div class="project-card card">
+                                <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="TP01">
+                                <div class="card-body">
+                                    <h5 class="card-title">TP01 Compte rendu Deepseek</h5>
+                                    <p class="card-text">Introduction aux pratiques professionnelles et aux outils de développement.</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp01Modal">
+                                        Voir le TP
+						
+                                    </button>
+						<a href="compte_rendu.pdf" target="_blank">Voir le compte rendu</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <p><strong>Adresse:</strong> 123 Avenue de la République, 87000 Limoges</p>
-                            <p><strong>Disponibilité:</strong> Immédiate</p>
-                            <p><strong>Statut:</strong> Étudiant BTS SIO</p>
+                        <div class="col-md-4 mb-4">
+				
+                            <div class="project-card card">
+                                <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="TP02">
+                                <div class="card-body">
+                                    <h5 class="card-title">TP02 - Compte Rendu TP_Config</h5>
+                                    <p class="card-text">Mise en pratique des concepts de développement web avancé.</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp02Modal">
+                                        Voir le TP
+						<a href="TP_Config.pdf" target="_blank" class="btn btn-primary">Voir le compte rendu</a>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <div class="col-md-4 mb-4">
+                            <div class="project-card card">
+					<style>
+  					.btn {
+   					 display: inline-block;
+    					padding: 10px 20px;
+   					 background-color: #007BFF; /* bleu */
+   					 color: white;
+   					 text-decoration: none;
+   					 border-radius: 8px;
+   					 font-family: sans-serif;
+   					 transition: background-color 0.3s ease;
+ 					 }
 
-    <!-- Compétences Section -->
-    <section id="competences" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="text-center section-title">Mes compétences</h2>
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3 class="mb-4">Savoir-être</h3>
-                    <div class="skill-item">
-                        <p class="mb-1">Discipline</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <p class="mb-1">Ponctualité</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <p class="mb-1">Rigueur et organisation</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <p class="mb-1">Capacité d'adaptation</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <p class="mb-1">Esprit d'équipe</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h3 class="mb-4">Savoir-faire</h3>
-                    <div class="skill-item">
-                        <p class="mb-1">Polyvalence</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 92%" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <p class="mb-1">Environnements industriels</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <p class="mb-1">Production et manutention</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 87%" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <p class="mb-1">Travail en équipe</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <p class="mb-1">Adaptation aux horaires décalés</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  					.btn:hover {
+  				  background-color: #0056b3; /* bleu foncé au survol */
+ 				 }
+				</style>
 
-    <!-- Projets Section -->
-    <section id="projets" class="section-padding">
-        <div class="container">
-            <h2 class="text-center section-title">Mes projets</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="Projet développement web">
-                        <div class="card-body">
-                            <h5 class="card-title">Site E-commerce</h5>
-                            <p class="card-text">Développement d'une plateforme e-commerce complète avec panier et système de paiement.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project1Modal">
-                                Voir les détails
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="Projet application mobile">
-                        <div class="card-body">
-                            <h5 class="card-title">Application Mobile</h5>
-                            <p class="card-text">Création d'une application de gestion de tâches avec synchronisation cloud.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project2Modal">
-                                Voir les détails
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="project-card card">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="Projet analyse données">
-                        <div class="card-body">
-                            <h5 class="card-title">Tableau de Bord Analytics</h5>
-                            <p class="card-text">Conception d'un tableau de bord pour visualisation de données marketing.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#project3Modal">
-                                Voir les détails
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modals for Projects -->
-    <div class="modal fade" id="project1Modal" tabindex="-1" aria-labelledby="project1ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="project1ModalLabel">Site E-commerce</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid mb-3" alt="Projet développement web">
-                    <p>Développement complet d'une plateforme e-commerce avec les fonctionnalités suivantes:</p>
-                    <ul>
-                        <li>Interface responsive et moderne</li>
-                        <li>Système de gestion des produits avec catégories</li>
-                        <li>Panier d'achat et processus de commande</li>
-                        <li>Intégration de système de paiement sécurisé</li>
-                        <li>Espace client avec historique des commandes</li>
-                        <li>Backend d'administration pour la gestion du site</li>
-                    </ul>
-                    <p><strong>Technologies utilisées:</strong> HTML5, CSS3, JavaScript, Bootstrap, PHP, MySQL</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="project2Modal" tabindex="-1" aria-labelledby="project2ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="project2ModalLabel">Application Mobile</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid mb-3" alt="Projet application mobile">
-                    <p>Création d'une application mobile de gestion de tâches avec les fonctionnalités suivantes:</p>
-                    <ul>
-                        <li>Création, modification et suppression de tâches</li>
-                        <li>Catégorisation et priorisation des tâches</li>
-                        <li>Rappels et notifications push</li>
-                        <li>Synchronisation cloud multi-appareils</li>
-                        <li>Interface intuitive et conviviale</li>
-                        <li>Mode hors ligne avec synchronisation ultérieure</li>
-                    </ul>
-                    <p><strong>Technologies utilisées:</strong> React Native, Redux, Firebase, Node.js</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="project3Modal" tabindex="-1" aria-labelledby="project3ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="project3ModalLabel">Tableau de Bord Analytics</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid mb-3" alt="Projet analyse données">
-                    <p>Conception et développement d'un tableau de bord analytics avec les fonctionnalités suivantes:</p>
-                    <ul>
-                        <li>Visualisation de données marketing en temps réel</li>
-                        <li>Graphiques interactifs et personnalisables</li>
-                        <li>Rapports automatisés et exportables</li>
-                        <li>Segmentation des données par canaux et périodes</li>
-                        <li>Alertes et notifications sur les KPI importants</li>
-                        <li>Interface responsive adaptée aux différents écrans</li>
-                    </ul>
-                    <p><strong>Technologies utilisées:</strong> JavaScript, D3.js, React, Python, Django, PostgreSQL</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Expérience Section -->
-    <section id="experience" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="text-center section-title">Mon expérience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h4>Mission d'inventaire</h4>
-                    <h5>ARTUS Châteauroux - Octobre 2023</h5>
-                    <ul>
-                        <li>Réalisation de diverses tâches de manutention et d'assistance dans le cadre de projets ponctuels</li>
-                        <li>Adaptation rapide aux différents rôles et environnement de travail</li>
-                        <li>Collaboration avec les équipes pour optimiser la productivité et atteindre les objectifs de la mission</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h4>Employé polyvalent</h4>
-                    <h5>Elis berry Déols 36130 - De juin 2023 à septembre 2023</h5>
-                    <ul>
-                        <li>Travail en équipe pour assurer le bon déroulement de la production</li>
-                        <li>Gestion des tâches de manutention et de préparation des commandes</li>
-                        <li>Suivi des consignes de sécurité et respect des normes de qualité en vigueur</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h4>Bénévolat</h4>
-                    <h5>Croix Rouge et La banque alimentaire Châteauroux - Avril 2023</h5>
-                    <ul>
-                        <li>Collectes de l'alimentation dans les grandes surfaces pour des associations</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3 class="mt-5 mb-4">Formation</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h4>BTS SIO</h4>
-                    <h5>Institution Beaupeyrat Limoges - Depuis septembre 2024</h5>
-                </div>
-                <div class="timeline-item">
-                    <h4>Bac Technologique STMG</h4>
-                    <h5>Lycée Aristide Berges Seyssinet-Pariset - De septembre 2023 à juin 2024</h5>
-                </div>
-                <div class="timeline-item">
-                    <h4>1er Technologique STMG</h4>
-                    <h5>Lycée Blaise Pascal Châteauroux - De 2022 à 2023</h5>
-                </div>
-                <div class="timeline-item">
-                    <h4>1er BAC professionnel maintenance des équipements industriels</h4>
-                    <h5>Lycée Blaise Pascal Châteauroux - De 2021 à 2022</h5>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Compte Rendu Section -->
-    <section id="compte-rendu" class="section-padding">
-        <div class="container">
-            <h2 class="text-center section-title">Comptes rendus</h2>
-            
-            <ul class="nav nav-tabs subject-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="bloc1-tab" data-bs-toggle="tab" data-bs-target="#bloc1" type="button" role="tab" aria-controls="bloc1" aria-selected="true">Bloc 1</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="cybersecurite-tab" data-bs-toggle="tab" data-bs-target="#cybersecurite" type="button" role="tab" aria-controls="cybersecurite" aria-selected="false">Cybersécurité</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="reseau-tab" data-bs-toggle="tab" data-bs-target="#reseau" type="button" role="tab" aria-controls="reseau" aria-selected="false">Réseau</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="atelier-tab" data-bs-toggle="tab" data-bs-target="#atelier" type="button" role="tab" aria-controls="atelier" aria-selected="false">Atelier</button>
-                </li>
-            </ul>
-            
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="bloc1" role="tabpanel" aria-labelledby="bloc1-tab">
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Compte rendu Bloc 1 - Semaine 1</h5>
-                            <p class="card-text">Introduction aux concepts fondamentaux du développement web et aux bonnes pratiques.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Compte rendu Bloc 1 - Semaine 2</h5>
-                            <p class="card-text">Approfondissement des langages HTML5 et CSS3 avec mise en pratique sur un projet concret.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
+                                <img src= "https://store-images.s-microsoft.com/image/apps.3235.14410076060135429.789f7faf-f4d8-407c-9f5d-fcd1a0a41a33.108a6820-fbeb-40c7-80c8-ec2500fcfd6c" alt="TP03">
+                                <div class="card-body">
+                                    <h5 class="card-title">TP03 - Compte Rendu Angry Birds</h5>
+                                    <p class="card-text">Approfondissement des techniques de développement backend.</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp03Modal">
+                                        Voir le TP
+						<a href="compte_rendu_birds.pdf" target="_blank" class="btn btn-primary">Voir le compte rendu</a>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="tab-pane fade" id="cybersecurite" role="tabpanel" aria-labelledby="cybersecurite-tab">
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Cybersécurité - Mme Beauvallet</h5>
-                            <p class="card-text">Introduction aux principes de base de la sécurité informatique et des bonnes pratiques.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="project-card card">
+                                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="TP04">
+                                <div class="card-body">
+                                    <h5 class="card-title">TP04 - Cybersécurité</h5>
+                                    <p class="card-text">Introduction aux principes de base de la sécurité informatique.</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp04Modal">
+                                        Voir le TP
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Sécurité des réseaux</h5>
-                            <p class="card-text">Étude des vulnérabilités réseau et des méthodes de protection.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
+                        <div class="col-md-4 mb-4">
+                            <div class="project-card card">
+                                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="TP05">
+                                <div class="card-body">
+                                    <h5 class="card-title">TP05 - Cybersécurité</h5>
+                                    <p class="card-text">Étude des vulnérabilités réseau et des méthodes de protection.</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp05Modal">
+                                        Voir le TP
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="project-card card">
+                                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="TP06">
+                                <div class="card-body">
+                                    <h5 class="card-title">TP06 - Cybersécurité</h5>
+                                    <p class="card-text">Mise en pratique des techniques de sécurisation avancées.</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp06Modal">
+                                        Voir le TP
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="tab-pane fade" id="reseau" role="tabpanel" aria-labelledby="reseau-tab">
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Réseau - M. Sotoca</h5>
-                            <p class="card-text">Configuration des routeurs et commutateurs dans un environnement réseau simulé.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="project-card card">
+                                <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="Réseau TP">
+                                <div class="card-body">
+                                    <h5 class="card-title">TP Réseau 1</h5>
+                                    <p class="card-text">Configuration des routeurs et commutateurs dans un environnement réseau simulé.</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reseau01Modal">
+                                        Voir le TP
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Protocoles de communication</h5>
-                            <p class="card-text">Analyse des protocoles TCP/IP et mise en pratique avec Wireshark.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tab-pane fade" id="atelier" role="tabpanel" aria-labelledby="atelier-tab">
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Atelier - M. Sotoca</h5>
-                            <p class="card-text">Atelier pratique sur la configuration d'un serveur Linux et services associés.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
-                        </div>
-                    </div>
-                    <div class="report-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">Dépannage réseau</h5>
-                            <p class="card-text">Méthodologie de diagnostic et résolution des pannes réseau courantes.</p>
-                            <a href="#" class="btn btn-primary">Télécharger</a>
+                        <div class="col-md-4 mb-4">
+                            <div class="project-card card">
+                                <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="card-img-top project-img" alt="Réseau TP">
+                                <div class="card-body">
+                                    <h5 class="card-title">TP Réseau 2</h5>
+                                    <p class="card-text">Analyse des protocoles TCP/IP et mise en pratique avec Wireshark.</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reseau02Modal">
+                                        Voir le TP
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modals for TP -->
+    <div class="modal fade" id="tp01Modal" tabindex="-1" aria-labelledby="tp01ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tp01ModalLabel">TP01 -Compte Rendu Deepseek</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+			
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid mb-3" alt="TP01">
+                    <h4>Introduction aux pratiques professionnelles</h4>
+                    <p>Ce TP présente les concepts fondamentaux des pratiques professionnelles dans le développement web.</p>
+                    <h5>Contenu détaillé:</h5>
+                    <ul>
+                        <li>Présentation des méthodologies de travail</li>
+                        <li>Initiation aux outils de développement</li>
+                        <li>Mise en place d'un environnement de travail</li>
+                        <li>Bonnes pratiques de codage</li>
+                        <li>Gestion de version avec Git</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="section-padding bg-light">
@@ -1461,9 +865,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Coordonnées</h5>
-                            <p class="card-text"><i class="bi bi-geo-alt-fill me-2"></i> 123 Avenue de la République, 87000 Limoges</p>
-                            <p class="card-text"><i class="bi bi-telephone-fill me-2"></i> 06 12 34 56 78</p>
-                            <p class="card-text"><i class="bi bi-envelope-fill me-2"></i> abid.haroon@email.com</p>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill me-2"></i> 12 rue docteur roubaud, 05000 GAP</p>
+                            <p class="card-text"><i class="bi bi-telephone-fill me-2"></i> 06 41 51 21 64</p>
+                            <p class="card-text"><i class="bi bi-envelope-fill me-2"></i> kabid8788@gmail.com</p>
                             <div class="social-icons mt-4">
                                 <a href="#"><i class="bi bi-linkedin"></i></a>
                                 <a href="#"><i class="bi bi-github"></i></a>
@@ -1503,6 +907,9 @@
                     <a href="#" class="text-light me-3">Mentions légales</a>
                     <a href="#" class="text-light">Politique de confidentialité</a>
                 </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>Ce portfolio a été créé avec HTML, CSS, JavaScript et Bootstrap</p>
             </div>
         </div>
     </footer>
@@ -1562,5 +969,4 @@
         });
     </script>
 </body>
->>>>>>> b5022b8 (Premier commit)
 </html>
