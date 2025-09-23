@@ -168,6 +168,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border: none;
+            height: 100%;
         }
         
         .project-card:hover {
@@ -216,34 +217,107 @@
             transform: translateY(-5px);
         }
         
-        .subject-tabs {
-            margin-bottom: 40px;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        
-        .subject-tabs .nav-link {
-            color: var(--text-dark) !important;
-            font-weight: 600;
-            padding: 15px 25px;
-            border-radius: 10px 10px 0 0;
-        }
-        
-        .subject-tabs .nav-link.active {
-            background-color: var(--secondary-color);
-            color: white !important;
+        /* Nouveau design pour les comptes rendus */
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
         
         .report-card {
-            margin-bottom: 25px;
+            background: white;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: none;
+            position: relative;
         }
         
         .report-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .report-img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+        
+        .report-card:hover .report-img {
+            transform: scale(1.05);
+        }
+        
+        .report-content {
+            padding: 25px;
+        }
+        
+        .report-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .report-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .report-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-sm-custom {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--secondary-color);
+            color: white;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline-custom {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-outline-custom:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .reports-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .reports-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 15px;
         }
         
         footer {
@@ -315,6 +389,10 @@
             
             .section-padding {
                 padding: 70px 0;
+            }
+            
+            .reports-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -520,7 +598,7 @@
         </div>
     </section>
 
-     <!-- Expérience Section -->
+    <!-- Expérience Section -->
     <section id="experience" class="section-padding bg-light">
         <div class="container">
             <h2 class="text-center section-title">Mon expérience</h2>
@@ -574,166 +652,258 @@
         </div>
     </section>
 
-    <!-- Compte Rendu Section -->
+    <!-- Nouvelle section Comptes rendus redesignée -->
     <section id="compte-rendu" class="section-padding">
         <div class="container">
-            <h2 class="text-center section-title">Comptes rendus</h2>
+            <div class="reports-header">
+                <h2 class="text-center section-title">Comptes rendus</h2>
+                <p class="reports-subtitle">Ensemble de mes travaux pratiques et projets académiques</p>
+            </div>
             
-            <ul class="nav nav-pills subject-tabs justify-content-center" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="atelier-tab" data-bs-toggle="pill" data-bs-target="#atelier" type="button" role="tab" aria-controls="atelier" aria-selected="true">Mme Beauvallet et M Sotoca</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="cybersecurite-tab" data-bs-toggle="pill" data-bs-target="#cybersecurite" type="button" role="tab" aria-controls="cybersecurite" aria-selected="false">Mme Beauvallet et M Sotoca </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="reseau-tab" data-bs-toggle="pill" data-bs-target="#reseau" type="button" role="tab" aria-controls="reseau" aria-selected="false">Mme beauvallet et M Sotoca </button>
-                </li>
-            </ul>
-            
-            <div class="tab-content mt-5" id="myTabContent">
-                <div class="tab-pane fade show active" id="atelier" role="tabpanel" aria-labelledby="atelier-tab">
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="project-card card">
-                                <img src="https://cdn.prod.website-files.com/67053868fc01e494462e71c9/679925e155cb8a7bec0f17fb_deepseek-vs-chatgpt-open-ai.jpg" alt="TP01">
-                                <div class="card-body">
-                                    <h5 class="card-title">TP01 Compte rendu Deepseek</h5>
-                                    <p class="card-text">Introduction aux pratiques professionnelles et aux outils de développement.</p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp01Modal">
-                                        Voir le TP
-						
-                                    </button>
-						<a href="compte_rendu.pdf" target="_blank">Voir le compte rendu</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-				
-                            <div class="project-card card">
-                                <img src="https://www.omega-informatique.net/img/actu/larg/larg_20190906121654reseau.jpg" alt="TP02">
-                                <div class="card-body">
-                                    <h5 class="card-title">TP02 - Compte Rendu TP_Config</h5>
-                                    <p class="card-text">Mise en pratique des concepts de développement web avancé.</p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp02Modal">
-                                        Voir le TP
-						<a href="TP_Config.pdf" target="_blank" class="btn btn-primary">Voir le compte rendu</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="project-card card">
-					<style>
-  					.btn {
-   					 display: inline-block;
-    					padding: 10px 20px;
-   					 background-color: #007BFF; /* bleu */
-   					 color: white;
-   					 text-decoration: none;
-   					 border-radius: 8px;
-   					 font-family: sans-serif;
-   					 transition: background-color 0.3s ease;
- 					 }
-
-  					.btn:hover {
-  				  background-color: #0056b3; /* bleu foncé au survol */
- 				 }
-				</style>
-
-                                <img src= "https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_3DS_AngryBirdsTrilogy_image1600w.png" alt="TP03">
-                                <div class="card-body">
-                                    <h5 class="card-title">TP03 - Compte Rendu Angry Birds</h5>
-                                    <p class="card-text">Approfondissement des techniques de développement backend.</p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp03Modal">
-                                        Voir le TP
-						<a href="compte_rendu_birds.pdf" target="_blank" class="btn btn-primary">Voir le compte rendu</a>
-                                    </button>
-                                </div>
-                            </div>
+            <div class="reports-grid">
+                <!-- TP01 - Deepseek -->
+                <div class="report-card">
+                    <img src="https://cdn.prod.website-files.com/67053868fc01e494462e71c9/679925e155cb8a7bec0f17fb_deepseek-vs-chatgpt-open-ai.jpg" class="report-img" alt="TP01 Deepseek">
+                    <div class="report-content">
+                        <h5 class="report-title">TP01 - Compte rendu Deepseek</h5>
+                        <p class="report-description">Introduction aux pratiques professionnelles et aux outils de développement avec Deepseek.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp01Modal">Voir détails</button>
+                            <a href="compte_rendu.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="tab-pane fade" id="cybersecurite" role="tabpanel" aria-labelledby="cybersecurite-tab">
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="project-card card">
-                                <img src="https://blog.planview.com/fr/wp-content/uploads/2020/01/Top-6-Software-Development-Methodologies.jpg" alt="TP04">
-                                <div class="card-body">
-                                    <h5 class="card-title">TP04 - TP_LOGICIEL</h5>
-                                    <p class="card-text">Introduction aux principes de base de la sécurité informatique.</p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp04Modal">
-                                        Voir le TP
-						   <a href="TP_Logiciel.pdf" target="_blank">Voir le compte rendu</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="project-card card">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnq37KCEspsUldeOvzmO9BfUbYYv7sTPCqkg&s" alt="TP05">
-                                <div class="card-body">
-                                    <h5 class="card-title">TP05 - JAVA </h5>
-                                    <p class="card-text">Étude des vulnérabilités réseau et des méthodes de protection.</p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp05Modal">
-                                        Voir le TP
-							 <a href="TP_JAVA.pdf" target="_blank">Voir le compte rendu</a>
 
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="project-card card">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc2bQwZJUiz5HGZkY80m_8JN8i61wK5goiuw&s" alt="TP06">
-                                <div class="card-body">
-                                    <h5 class="card-title">TP06 - JAVA EX 1 et 2 </h5>
-                                    <p class="card-text">Mise en pratique des techniques de sécurisation avancées.</p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tp06Modal">
-                                        Voir le TP
-							<a href="JAVA.pdf" target="_blank">Voir le compte rendu</a>
-                                    </button>
-                                </div>
-                            </div>
+                <!-- TP02 - Config -->
+                <div class="report-card">
+                    <img src="https://www.omega-informatique.net/img/actu/larg/larg_20190906121654reseau.jpg" class="report-img" alt="TP02 Config">
+                    <div class="report-content">
+                        <h5 class="report-title">TP02 - TP Config</h5>
+                        <p class="report-description">Configuration et paramétrage des environnements de développement et systèmes.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp02Modal">Voir détails</button>
+                            <a href="TP_Config.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="tab-pane fade" id="reseau" role="tabpanel" aria-labelledby="reseau-tab">
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="project-card card">
-                                <img src="https://etudestech.com/wp-content/uploads/2023/09/adobestock_24625864-scaled.jpeg" alt="Réseau TP">
-                                <div class="card-body">
-                                    <h5 class="card-title">TP HTML 1</h5>
-                                    <p class="card-text">Configuration des routeurs et commutateurs dans un environnement réseau simulé.</p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reseau01Modal">
-                                        Voir le TP 
-							<a href="TP_HTML.pdf" target="_blank" style="color: black;">
-   							 Voir le compte rendu
-							</a>
 
-
-                                    </button>
-                                </div>
-                            </div>
+                <!-- TP03 - Angry Birds -->
+                <div class="report-card">
+                    <img src="https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_3DS_AngryBirdsTrilogy_image1600w.png" class="report-img" alt="TP03 Angry Birds">
+                    <div class="report-content">
+                        <h5 class="report-title">TP03 - Angry Birds</h5>
+                        <p class="report-description">Développement d'un jeu inspiré d'Angry Birds utilisant les technologies web.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp03Modal">Voir détails</button>
+                            <a href="compte_rendu_birds.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
                         </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="project-card card">
-                                <img src="https://miro.medium.com/0*3zXmQf_B3ZyoeOzm" alt="Réseau TP">
-                                <div class="card-body">
-                                    <h5 class="card-title">TP JAVA B1 TP03</h5>
-                                    <p class="card-text">Analyse des protocoles TCP/IP et mise en pratique avec Wireshark.</p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reseau02Modal">
-                                        Voir le TP
-							<a href="TP JAVA B1 TP03" target="_blank" style="color: black;">
-							 Voir le compte rendu
-							</a>
+                    </div>
+                </div>
 
-                                    </button>
-                                </div>
-                            </div>
+                <!-- TP04 - Logiciel -->
+                <div class="report-card">
+                    <img src="https://blog.planview.com/fr/wp-content/uploads/2020/01/Top-6-Software-Development-Methodologies.jpg" class="report-img" alt="TP04 Logiciel">
+                    <div class="report-content">
+                        <h5 class="report-title">TP04 - TP Logiciel</h5>
+                        <p class="report-description">Étude des méthodologies de développement logiciel et mise en pratique.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp04Modal">Voir détails</button>
+                            <a href="TP_Logiciel.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP05 - Java -->
+                <div class="report-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnq37KCEspsUldeOvzmO9BfUbYYv7sTPCqkg&s" class="report-img" alt="TP05 Java">
+                    <div class="report-content">
+                        <h5 class="report-title">TP05 - JAVA</h5>
+                        <p class="report-description">Programmation orientée objet avec Java, concepts fondamentaux et applications.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp05Modal">Voir détails</button>
+                            <a href="TP_JAVA.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP06 - Java Ex 1 et 2 -->
+                <div class="report-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc2bQwZJUiz5HGZkY80m_8JN8i61wK5goiuw&s" class="report-img" alt="TP06 Java Ex">
+                    <div class="report-content">
+                        <h5 class="report-title">TP06 - JAVA Ex 1 et 2</h5>
+                        <p class="report-description">Exercices pratiques avancés en Java, manipulation des structures de données.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp06Modal">Voir détails</button>
+                            <a href="JAVA.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP07 - HTML -->
+                <div class="report-card">
+                    <img src="https://etudestech.com/wp-content/uploads/2023/09/adobestock_24625864-scaled.jpeg" class="report-img" alt="TP07 HTML">
+                    <div class="report-content">
+                        <h5 class="report-title">TP07 - HTML 1</h5>
+                        <p class="report-description">Création de pages web avec HTML5, structure et sémantique du web moderne.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp07Modal">Voir détails</button>
+                            <a href="TP_HTML.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP08 - Java B1 TP03 -->
+                <div class="report-card">
+                    <img src="https://miro.medium.com/0*3zXmQf_B3ZyoeOzm" class="report-img" alt="TP08 Java B1">
+                    <div class="report-content">
+                        <h5 class="report-title">TP08 - JAVA B1 TP03</h5>
+                        <p class="report-description">Projet Java avancé B1, implémentation d'algorithmes et structures complexes.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp08Modal">Voir détails</button>
+                            <a href="TP JAVA B1 TP03.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP09 - TP CSS -->
+                <div class="report-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkv9GxAtc5ULZoUIRsSm0v6YTnxu5K-e7CVQ&s" alt="TP09 CSS">
+                    <div class="report-content">
+                        <h5 class="report-title">TP09 - CSS </h5>
+                        <p class="report-description">Techniques avancées de mise en page avec CSS Grid, Flexbox et animations.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp09Modal">Voir détails</button>
+                            <a href="TP_CSS.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP10 - Base de données -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP10 BDD">
+                    <div class="report-content">
+                        <h5 class="report-title">TP10 - Base de Données MySQL</h5>
+                        <p class="report-description">Conception et manipulation de bases de données relationnelles avec MySQL.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp10Modal">Voir détails</button>
+                            <a href="TP_MySQL.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP11 - Python -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP11 Python">
+                    <div class="report-content">
+                        <h5 class="report-title">TP11 - Python Fundamentals</h5>
+                        <p class="report-description">Programmation Python : variables, fonctions, structures de données et POO.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp11Modal">Voir détails</button>
+                            <a href="TP_Python.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP12 - Cybersécurité -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP12 Cybersécurité">
+                    <div class="report-content">
+                        <h5 class="report-title">TP12 - Cybersécurité</h5>
+                        <p class="report-description">Analyse des vulnérabilités et mise en place de mesures de protection.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp12Modal">Voir détails</button>
+                            <a href="TP_Cybersecurite.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP13 - Réseaux Cisco -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP13 Réseaux">
+                    <div class="report-content">
+                        <h5 class="report-title">TP13 - Configuration Réseaux Cisco</h5>
+                        <p class="report-description">Configuration de routeurs et commutateurs Cisco avec Packet Tracer.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp13Modal">Voir détails</button>
+                            <a href="TP_Cisco.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP14 - JavaScript -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP14 JavaScript">
+                    <div class="report-content">
+                        <h5 class="report-title">TP14 - JavaScript Interactif</h5>
+                        <p class="report-description">Développement d'interfaces interactives avec JavaScript et DOM.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp14Modal">Voir détails</button>
+                            <a href="TP_JavaScript.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP15 - Projet Collaboratif -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP15 Projet">
+                    <div class="report-content">
+                        <h5 class="report-title">TP15 - Projet Collaboratif Git</h5>
+                        <p class="report-description">Gestion de projet en équipe avec Git, GitHub et méthodologies agiles.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp15Modal">Voir détails</button>
+                            <a href="TP_Git_Projet.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP16 - API REST -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP16 API">
+                    <div class="report-content">
+                        <h5 class="report-title">TP16 - Développement API REST</h5>
+                        <p class="report-description">Création et consommation d'APIs REST avec Node.js et Express.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp16Modal">Voir détails</button>
+                            <a href="TP_API_REST.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP17 - Virtualisation -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP17 VM">
+                    <div class="report-content">
+                        <h5 class="report-title">TP17 - Virtualisation VMware</h5>
+                        <p class="report-description">Installation et configuration de machines virtuelles avec VMware.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp17Modal">Voir détails</button>
+                            <a href="TP_VMware.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP18 - UML -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP18 UML">
+                    <div class="report-content">
+                        <h5 class="report-title">TP18 - Modélisation UML</h5>
+                        <p class="report-description">Conception de diagrammes UML pour la modélisation de systèmes.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp18Modal">Voir détails</button>
+                            <a href="TP_UML.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TP19 - PHP/MySQL -->
+                <div class="report-card">
+                    <img src="https://images.unsplash.com/photo-1555952494-efd681c7e3f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="report-img" alt="TP19 PHP">
+                    <div class="report-content">
+                        <h5 class="report-title">TP19 - Application Web PHP</h5>
+                        <p class="report-description">Développement d'une application web complète avec PHP et MySQL.</p>
+                        <div class="report-actions">
+                            <button type="button" class="btn-sm-custom btn-primary-custom" data-bs-toggle="modal" data-bs-target="#tp19Modal">Voir détails</button>
+                            <a href="TP_PHP_MySQL.pdf" target="_blank" class="btn-sm-custom btn-outline-custom">Télécharger PDF</a>
                         </div>
                     </div>
                 </div>
@@ -741,29 +911,28 @@
         </div>
     </section>
 
-    <!-- Modals for TP -->
+    <!-- Modals pour les TPs -->
     <div class="modal fade" id="tp01Modal" tabindex="-1" aria-labelledby="tp01ModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tp01ModalLabel">TP01 -Compte Rendu Deepseek</h5>
+                    <h5 class="modal-title" id="tp01ModalLabel">TP01 - Compte rendu Deepseek</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-			
                 <div class="modal-body">
-                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="img-fluid mb-3" alt="TP01">
-                    <h4>Introduction aux pratiques professionnelles</h4>
-                    <p>Ce TP présente les concepts fondamentaux des pratiques professionnelles dans le développement web.</p>
+                    <img src="https://cdn.prod.website-files.com/67053868fc01e494462e71c9/679925e155cb8a7bec0f17fb_deepseek-vs-chatgpt-open-ai.jpg" class="img-fluid mb-3" alt="TP01">
+                    <h4>Introduction à Deepseek</h4>
+                    <p>Ce TP présente les fonctionnalités et l'utilisation de Deepseek dans le contexte du développement.</p>
                     <h5>Contenu détaillé:</h5>
                     <ul>
-                        <li>Présentation des méthodologies de travail</li>
-                        <li>Initiation aux outils de développement</li>
-                        <li>Mise en place d'un environnement de travail</li>
-                        <li>Bonnes pratiques de codage</li>
-                        <li>Gestion de version avec Git</li>
+                        <li>Découverte de l'interface Deepseek</li>
+                        <li>Comparaison avec d'autres outils similaires</li>
+                        <li>Utilisation pratique dans des projets</li>
+                        <li>Avantages et limitations</li>
                     </ul>
                 </div>
                 <div class="modal-footer">
+                    <a href="compte_rendu.pdf" target="_blank" class="btn btn-primary">Télécharger le PDF</a>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>
@@ -883,9 +1052,8 @@
         document.getElementById('downloadCV').addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Créer un lien de téléchargement
             const link = document.createElement('a');
-            link.href = 'CV_Abid_HAROON.pdf'; // Remplacez par le chemin réel de votre CV
+            link.href = 'CV_Abid_HAROON.pdf';
             link.download = 'CV_Abid_HAROON.pdf';
             document.body.appendChild(link);
             link.click();
